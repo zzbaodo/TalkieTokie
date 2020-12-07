@@ -1,0 +1,5 @@
+.userInfo-container{
+    flex: 1;
+    min-width: 180px;
+    max-width: 300px;
+}
