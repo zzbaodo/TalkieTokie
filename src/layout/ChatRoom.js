@@ -17,9 +17,11 @@ const ChatRoom = () => {
   const [chatMessage, setChatMessage] = useState("")
   // console.log(messagesArr.length)
 
+  
   useEffect(() => {
     if (currentChannel) {
       displayChatRoom(currentChannel)
+      console.log('displayChatrun')
     }
     // eslint-disable-next-line
   }, [currentChannel])
@@ -33,10 +35,11 @@ const ChatRoom = () => {
       .collection(`${currentChannel}messages`)
     await dataRef.add({
       text: chatMessage,
-      createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+      createdAt: Date.now(),
       uid,
       userImage: photoURL,
     })
+    displayChatRoom(currentChannel)
     setChatMessage("")
   }
 

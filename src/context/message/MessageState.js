@@ -14,23 +14,28 @@ const MessageState = (props) => {
 
   // ACTIONS
   const displayChatRoom = async (currentChannel) => {
-    await db
+    const query = db
       .collection(`channels`)
       .doc(currentChannel)
       .collection(`${currentChannel}messages`)
       .orderBy("createdAt")
-      .onSnapshot((collectionSnapshot) => {
-        const changes = collectionSnapshot.docChanges()
-        
-        const data = changes.map((doc) => doc.doc.data())
-        dispatch({
-          type: DISPLAY_CHAT_ROOM,
-          payload: { data, activechannel: currentChannel },
-        })
-        console.log(data)
-       
-      })
+      .limit("20")
+    const data = await query.get()
+    let res = []
+    data.forEach((doc) => {
+        const docData = {
+            ...doc.data(),
+            id: doc.id,
+        }
+      res.push(docData)
+    })
+    dispatch({
+      type: DISPLAY_CHAT_ROOM,
+      payload: { res, activechannel: currentChannel },
+    })
   }
+
+  ////
   const uponChangeChannel = (currentChannel) => {
     dispatch({
       type: UPON_CHANGE_CHANNEL,

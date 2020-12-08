@@ -10,9 +10,8 @@ export default (state, action) => {
       }
 
     case DISPLAY_CHAT_ROOM:
-        console.log(state.messagesArr)
       return {
-        messagesArr: [...state.messagesArr, ...action.payload.data],
+        messagesArr: [...action.payload.res],
         activeChannel: action.payload.activechannel,
         loading: false,
       }

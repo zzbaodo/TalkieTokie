@@ -7,6 +7,7 @@ import LibraryAddIcon from "@material-ui/icons/LibraryAdd"
 import MailOutlineIcon from "@material-ui/icons/MailOutline"
 import UserContext from "../context/user/userContext"
 import Modal from "../components/Modal"
+import ChannelDisplay from "../components/ChannelDisplay"
 
 const UserInfo = ({ channels, favorites }) => {
   const user = JSON.parse(localStorage.getItem("user"))
@@ -28,13 +29,13 @@ const UserInfo = ({ channels, favorites }) => {
       type: "normal",
     })
   }
-  const addFavChannel = () => {
-    setShowModal(true)
-    setConfig({
-      name: "Add a favorite channel",
-      type: "favorite",
-    })
-  }
+  // const addFavChannel = () => {
+  //   setShowModal(true)
+  //   setConfig({
+  //     name: "Add a favorite channel",
+  //     type: "favorite",
+  //   })
+  // }
 
   return (
     <div className="userInfo-container">
@@ -49,16 +50,11 @@ const UserInfo = ({ channels, favorites }) => {
           <StarsIcon />
           Favorite Channels:
         </h3>
-        <IconButton onClick={addFavChannel}>
-          <AddCircleOutlineIcon />
-        </IconButton>
       </div>
       <ul>
         {favorites
           ? favorites.map((favorite) => (
-              <li key={favorite} onClick={() => changeChannel(favorite)}>
-                {favorite}
-              </li>
+            <ChannelDisplay channel={favorite} type= 'fav' key={favorite} />
             ))
           : null}
       </ul>
@@ -76,9 +72,7 @@ const UserInfo = ({ channels, favorites }) => {
       <ul>
         {channels
           ? channels.map((channel) => (
-              <li key={channel} onClick={() => changeChannel(channel)}>
-                {channel}
-              </li>
+              <ChannelDisplay channel={channel} key={channel} />
             ))
           : null}
       </ul>
