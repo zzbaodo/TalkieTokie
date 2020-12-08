@@ -12,29 +12,34 @@ const UserInfo = ({ channels, favorites }) => {
   const user = JSON.parse(localStorage.getItem("user"))
   const userContext = useContext(UserContext)
   const [showModal, setShowModal] = useState(false)
+  const [config, setConfig] = useState(null)
   const { getUserOption } = userContext
   const changeChannel = (name) => {
     getUserOption(name)
-    console.log("clicked")
   }
-
   const closeModal = () => {
     setShowModal(false)
   }
-  const favModalConfig = {
-    name: "Add Favorite Channel",
-  }
+
   const addChannel = () => {
     setShowModal(true)
+    setConfig({
+      name: "Add a channel",
+      type: "normal",
+    })
   }
   const addFavChannel = () => {
     setShowModal(true)
+    setConfig({
+      name: "Add a favorite channel",
+      type: "favorite",
+    })
   }
 
   return (
     <div className="userInfo-container">
-      {showModal && (
-        <Modal userId={user.uid} closeModal={closeModal}  />
+      {showModal && config && (
+        <Modal userId={user.uid} closeModal={closeModal} config={config} />
       )}
       <h3>TalkieTokie</h3>
       <h5>Hello {user.displayName}</h5>

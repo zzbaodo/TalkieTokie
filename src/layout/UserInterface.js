@@ -14,7 +14,7 @@ const UserInterface = () => {
   const { displayName, uid } = user
   useEffect(() => {
     getUserInfo(uid, displayName)
-  }, [displayName, uid])
+  }, [displayName, uid,getUserInfo])
 
   return (
     <div className="UI-container">

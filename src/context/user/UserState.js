@@ -1,8 +1,13 @@
-import React, { useReducer } from "react"
-import { ADD_CHANNEL, USER_CHANNEL_OPTION, GET_USER_INFO } from "../types"
+import React, { useReducer, useContext } from "react"
+import {
+  ADD_CHANNEL,
+  USER_CHANNEL_OPTION,
+  GET_USER_INFO,
+} from "../types"
 import UserContext from "./userContext"
 import userReducer from "./userReducer"
 import firebase from "../../firebase"
+import MessageContext from "../message/messageContext"
 const UserState = (props) => {
   const initState = {
     currentChannel: "react",
@@ -11,6 +16,8 @@ const UserState = (props) => {
   }
   const [state, dispatch] = useReducer(userReducer, initState)
   const db = firebase.firestore()
+  const messageContext = useContext(MessageContext)
+  const { uponChangeChannel } = messageContext
   ///ACTIONS
   const getUserInfo = async (userId, name) => {
     const userRef = db.collection("user").doc(userId)
@@ -36,11 +43,12 @@ const UserState = (props) => {
     }
   }
 
-  const getUserOption = (name) => {
+  const getUserOption = (currentChannel) => {
     dispatch({
       type: USER_CHANNEL_OPTION,
-      payload: name,
+      payload: currentChannel,
     })
+    uponChangeChannel(currentChannel)
   }
 
   const addChannel = async (channel, userId) => {
@@ -72,6 +80,27 @@ const UserState = (props) => {
     })
   }
 
+  // const addFavChannel = async (channel, userId) => {
+  //   Add user to a selected channel
+  //     const currentUsersInChannel = doc.data()
+  //     console.log(currentUsersInChannel)
+  //     await channelsRef.update({
+  //       users: [...currentUsersInChannel.users, userId],
+  //     })
+  //   const userRef = db.collection("user").doc(userId)
+  //   const userChannels = await userRef.get()
+  //   const channelsList = userChannels.data()
+  //   const updatedChannelsList = [...channelsList.favorites, channel]
+  //   console.log(updatedChannelsList)
+  //   await userRef.update({
+  //     channels: [...updatedChannelsList],
+  //   })
+  //   dispatch({
+  //     type: ADD_FAVORITE_CHANNEL,
+  //     payload: updatedChannelsList,
+  //   })
+  // }
+
   return (
     <UserContext.Provider
       value={{
@@ -80,6 +109,7 @@ const UserState = (props) => {
         userFavChannels: state.userFavChannels,
         getUserOption,
         addChannel,
+      
         getUserInfo,
       }}
     >

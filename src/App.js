@@ -4,6 +4,7 @@ import { useAuthState } from "react-firebase-hooks/auth"
 import Signin from "./SignIn"
 import UserInterface from "./layout/UserInterface"
 import UserState from "./context/user/UserState"
+import MessageState from "./context/message/MessageState"
 
 function App() {
   const auth = firebase.auth()
@@ -11,17 +12,19 @@ function App() {
   localStorage.setItem("user", JSON.stringify(user))
   return (
     <>
-      <UserState>
-        <div className="app-container">
-          {user ? (
-            <UserInterface />
-          ) : (
-            <h3>
-              <Signin />
-            </h3>
-          )}
-        </div>
-      </UserState>
+      <MessageState>
+        <UserState>
+          <div className="app-container">
+            {user ? (
+              <UserInterface />
+            ) : (
+              <h3>
+                <Signin />
+              </h3>
+            )}
+          </div>
+        </UserState>
+      </MessageState>
     </>
   )
 }

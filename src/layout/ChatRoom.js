@@ -4,29 +4,25 @@ import "firebase/firestore"
 import ChatMessage from "../components/ChatMessage"
 import "./ChatRoom.css"
 import UserContext from "../context/user/userContext"
-import { displayChatRoom, getChatRoom } from "../Utils"
+import MessageContext from "../context/message/messageContext"
+
 const ChatRoom = () => {
   const auth = firebase.auth()
   const db = firebase.firestore()
   const userContext = useContext(UserContext)
   const userFromLocal = JSON.parse(localStorage.getItem("user"))
   const { currentChannel } = userContext
-
+  const messageContext = useContext(MessageContext)
+  const { messagesArr, loading, displayChatRoom } = messageContext
   const [chatMessage, setChatMessage] = useState("")
-  const [messagesArr, setMessageArr] = useState([])
-  console.log(currentChannel)
-  // const messageCollection = db.collection(`${currentChannel}messages`)
-  // const query = messageCollection.orderBy("createdAt").limit(25)
-  // const [messages] = useCollectionData(query, { idField: "id" })
-  
+  // console.log(messagesArr.length)
+
   useEffect(() => {
     if (currentChannel) {
-      displayChatRoom(currentChannel, userFromLocal.uid)
-      getChatRoom(currentChannel).then((data) => setMessageArr(data))
+      displayChatRoom(currentChannel)
     }
-  }, [currentChannel, userFromLocal.uid,setMessageArr])
-  console.log(messagesArr)
-
+    // eslint-disable-next-line
+  }, [currentChannel])
 
   const submitHandler = async (e) => {
     e.preventDefault()
@@ -48,15 +44,14 @@ const ChatRoom = () => {
     auth.signOut()
     localStorage.removeItem("user")
   }
-
   return (
     <>
       <div className="chat-panel-container">
         {currentChannel ? (
           <>
-            <h3>Chat Room</h3>
+            <h3>Welcome to {currentChannel} Chat Room</h3>
             <div>
-              {messagesArr &&
+              {messagesArr && loading === false ? (
                 messagesArr.map((msg) => (
                   <ChatMessage
                     key={msg.id}
@@ -65,9 +60,12 @@ const ChatRoom = () => {
                     createdAt={msg.createdAt}
                     id={msg.uid}
                   />
-                ))}
+                ))
+              ) : (
+                <p>Still waiting</p>
+              )}
             </div>
-            <form >
+            <form>
               <input
                 type="text"
                 value={chatMessage}
