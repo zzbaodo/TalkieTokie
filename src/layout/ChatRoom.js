@@ -11,17 +11,15 @@ const ChatRoom = () => {
   const db = firebase.firestore()
   const userContext = useContext(UserContext)
   const userFromLocal = JSON.parse(localStorage.getItem("user"))
-  const { currentChannel } = userContext
+  const { currentChannel, signUserOut } = userContext
   const messageContext = useContext(MessageContext)
   const { messagesArr, loading, displayChatRoom } = messageContext
   const [chatMessage, setChatMessage] = useState("")
   // console.log(messagesArr.length)
 
-  
   useEffect(() => {
     if (currentChannel) {
       displayChatRoom(currentChannel)
-      console.log('displayChatrun')
     }
     // eslint-disable-next-line
   }, [currentChannel])
@@ -46,6 +44,7 @@ const ChatRoom = () => {
   const signOut = () => {
     auth.signOut()
     localStorage.removeItem("user")
+    signUserOut()
   }
   return (
     <>

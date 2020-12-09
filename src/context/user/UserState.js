@@ -5,6 +5,8 @@ import {
   GET_USER_INFO,
   ADD_FAVORITE_CHANNEL,
   DELETE_CHANNEL,
+  DELETE_FAVORITE_CHANNEL,
+  SIGN_USER_OUT,
 } from "../types"
 import UserContext from "./userContext"
 import userReducer from "./userReducer"
@@ -32,7 +34,7 @@ const UserState = (props) => {
     if (!doc.exists) {
       //If the user is new then set up that user
       const info = {
-        channels: ["react", "JS"],
+        channels: ["react"],
         favorites: [],
         user: {
           name,
@@ -50,6 +52,24 @@ const UserState = (props) => {
         type: GET_USER_INFO,
         payload: doc.data(),
       })
+    }
+    const channelsRef = db.collection("channels").doc("react")
+    const channelDoc = await channelsRef.get()
+    if (!doc.exists) {
+      await channelsRef.set({
+        users: [userId],
+      })
+    } else {
+      //Add all users to a selected channel
+      const currentUsersInChannel = channelDoc.data()
+      console.log(currentUsersInChannel.users)
+      const index = currentUsersInChannel.users.indexOf(userId)
+      console.log(index)
+      if (index === -1) {
+        await channelsRef.update({
+          users: [...currentUsersInChannel.users, userId],
+        })
+      }
     }
   }
 
@@ -125,16 +145,18 @@ const UserState = (props) => {
       type: DELETE_CHANNEL,
       payload: [...userData.channels],
     })
+    if(userData.favorites.indexOf(channel) !== -1){
+      deleteFavChannel(channel, userId)
+    }
 
     //Second remove the user from channel doc
     console.log(channel)
     const channelRef = db.collection("channels").doc(channel)
     const channelDoc = await channelRef.get()
     const channelData = channelDoc.data()
-    console.log(channelData)
+    console.log('delete Channel')
     const indexChannel = channelData.users.indexOf(userId)
     channelData.users.splice(indexChannel, 1)
-    console.log(channelData)
     await channelRef.update({
       users: [...channelData.users],
     })
@@ -146,12 +168,19 @@ const UserState = (props) => {
     const userData = userDoc.data()
     const index = userData.favorites.indexOf(channel)
     userData.favorites.splice(index, 1)
+    console.log('delete fav channel')
     await userRef.update({
       favorites: [...userData.favorites],
     })
     dispatch({
-      type: DELETE_CHANNEL,
+      type: DELETE_FAVORITE_CHANNEL,
       payload: [...userData.favorites],
+    })
+  }
+
+  const signUserOut = () => {
+    dispatch({
+      type: SIGN_USER_OUT,
     })
   }
   return (
@@ -167,6 +196,7 @@ const UserState = (props) => {
         getUserInfo,
         deleteChannel,
         deleteFavChannel,
+        signUserOut
       }}
     >
       {props.children}

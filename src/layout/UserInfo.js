@@ -29,13 +29,6 @@ const UserInfo = ({ channels, favorites }) => {
       type: "normal",
     })
   }
-  // const addFavChannel = () => {
-  //   setShowModal(true)
-  //   setConfig({
-  //     name: "Add a favorite channel",
-  //     type: "favorite",
-  //   })
-  // }
 
   return (
     <div className="userInfo-container">
@@ -43,7 +36,7 @@ const UserInfo = ({ channels, favorites }) => {
         <Modal userId={user.uid} closeModal={closeModal} config={config} />
       )}
       <h3>TalkieTokie</h3>
-      <h5>Hello {user.displayName}</h5>
+      <h5>Hello {user?.displayName}</h5>
       <hr />
       <div>
         <h3>

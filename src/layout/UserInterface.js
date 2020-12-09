@@ -11,11 +11,13 @@ const UserInterface = () => {
   const { userChannels, userFavChannels, getUserInfo } = userContext
 
   const user = JSON.parse(localStorage.getItem("user"))
-  const { displayName, uid } = user
-  useEffect(() => {
-    getUserInfo(uid, displayName)
-  }, [displayName, uid,getUserInfo])
 
+  useEffect(() => {
+    if (user) {
+      const { displayName, uid } = user
+      getUserInfo(uid, displayName)
+    }
+  }, [])
   return (
     <div className="UI-container">
       <UserInfo channels={userChannels} favorites={userFavChannels} />

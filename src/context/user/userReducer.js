@@ -4,6 +4,8 @@ import {
   DELETE_CHANNEL,
   GET_USER_INFO,
   USER_CHANNEL_OPTION,
+  SIGN_USER_OUT,
+  DELETE_FAVORITE_CHANNEL,
 } from "../types"
 // eslint-disable-next-line
 export default (state, action) => {
@@ -23,6 +25,11 @@ export default (state, action) => {
         ...state,
         userChannels: [...action.payload],
       }
+    case DELETE_FAVORITE_CHANNEL:
+      return {
+        ...state,
+        userFavChannels: [...action.payload],
+      }
     case ADD_FAVORITE_CHANNEL:
       return {
         ...state,
@@ -34,6 +41,17 @@ export default (state, action) => {
         userChannels: action.payload.channels,
         userFavChannels: action.payload.favorites,
         user: { ...action.payload.user },
+      }
+    case SIGN_USER_OUT:
+      return {
+        currentChannel: "react",
+        userChannels: [],
+        userFavChannels: [],
+        user: {
+          name: "",
+          id: null,
+          avatar: "",
+        },
       }
     default:
       return {
