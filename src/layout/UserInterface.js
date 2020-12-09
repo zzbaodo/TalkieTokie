@@ -1,7 +1,6 @@
 import React, { useEffect, useContext } from "react"
 import ChatRoom from "./ChatRoom"
 import UserInfo from "./UserInfo"
-import ChannelInfo from "./ChannelInfo"
 import "./UserInterface.css"
 
 import UserContext from "../context/user/userContext"
@@ -22,7 +21,7 @@ const UserInterface = () => {
     <div className="UI-container">
       <UserInfo channels={userChannels} favorites={userFavChannels} />
       <ChatRoom />
-      <ChannelInfo />
+      
     </div>
   )
 }

@@ -13,7 +13,7 @@ const ChannelInfo = () => {
     const channelDoc = await channelRef.get()
     if (!channelDoc.exists) {
       await channelRef.set({
-        users: { id: user.id, name: user.name },
+        users: [user.id],
       })
       console.log("getalluserin channel run1")
       setUsers(user.name)
@@ -30,6 +30,8 @@ const ChannelInfo = () => {
   return (
     <div className="channelInfo-container">
       Chat Info
+      <p>There are {users?.length} users in this chat room</p>
+      <p></p>
       <ul></ul>
     </div>
   )

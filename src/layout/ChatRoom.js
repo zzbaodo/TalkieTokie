@@ -7,7 +7,7 @@ import UserContext from "../context/user/userContext"
 import MessageContext from "../context/message/messageContext"
 
 const ChatRoom = () => {
-  const auth = firebase.auth()
+  
   const db = firebase.firestore()
   const userContext = useContext(UserContext)
   const userFromLocal = JSON.parse(localStorage.getItem("user"))
@@ -41,41 +41,40 @@ const ChatRoom = () => {
     setChatMessage("")
   }
 
-  const signOut = () => {
-    auth.signOut()
-    localStorage.removeItem("user")
-    signUserOut()
-  }
+ 
   return (
     <>
       <div className="chat-panel-container">
         {currentChannel ? (
           <>
-            <h3>Welcome to {currentChannel} Chat Room</h3>
-            <div>
-              {messagesArr && loading === false ? (
-                messagesArr.map((msg) => (
-                  <ChatMessage
-                    key={msg.id}
-                    text={msg.text}
-                    photoURL={msg.userImage}
-                    createdAt={msg.createdAt}
-                    id={msg.uid}
-                  />
-                ))
-              ) : (
-                <p>Still waiting</p>
-              )}
+            <h1>Welcome to {currentChannel} Chat Room</h1>
+            <div className="form-input">
+              <div>
+                {messagesArr && loading === false ? (
+                  messagesArr.map((msg) => (
+                    <ChatMessage
+                      key={msg.id}
+                      text={msg.text}
+                      photoURL={msg.userImage}
+                      createdAt={msg.createdAt}
+                      id={msg.uid}
+                    />
+                  ))
+                ) : (
+                  <p>Still waiting</p>
+                )}
+              </div>
+              <form className='form-container'>
+                <input
+                  type="text"
+                  value={chatMessage}
+                  onChange={(e) => setChatMessage(e.target.value)}
+                />
+                <button onClick={submitHandler}>Send</button>
+                <br />
+  
+              </form>
             </div>
-            <form>
-              <input
-                type="text"
-                value={chatMessage}
-                onChange={(e) => setChatMessage(e.target.value)}
-              />
-              <button onClick={submitHandler}>Send</button>
-            </form>
-            <button onClick={signOut}>Sign Out</button>
           </>
         ) : (
           <h3>Please select a channel</h3>

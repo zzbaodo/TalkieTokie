@@ -1,7 +1,49 @@
 .chat-panel-container {
-    width: 500px;
-    max-width: 600px;
-    min-width: 350px;
-    margin: 0 auto;
-    flex: 8
-  }
+  width: 500px;
+  max-width: 600px;
+  min-width: 350px;
+  margin: 0 auto;
+  flex: 8;
+  height: 600px;
+  position: relative;
+  
+}
+
+.form-input {
+  position: absolute;
+  bottom: 0;
+}
+.form-container {
+  float: right;
+}
+input:focus {
+  outline: none;
+}
+input {
+  border-width: 0;
+  border: none;
+  background-color: white;
+  padding: 5px;
+  border-radius: 15px;
+  margin: 5px;
+}
+
+.form-container > button {
+  display: inline-block;
+  padding: 0.3em 1.2em;
+  margin: 0 0.3em 0.3em 0;
+  border-radius: 2em;
+  font-weight: 300;
+  color: #ffffff;
+  background-color: #4eb5f1;
+  text-align: center;
+  transition: all 0.2s;
+  text-decoration: none;
+  box-sizing: border-box;
+  border: none;
+  outline: none;
+}
+
+.form-container > button:hover {
+  background-color: #4095c6;
+}

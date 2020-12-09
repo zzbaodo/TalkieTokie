@@ -60,7 +60,7 @@ const UserState = (props) => {
         users: [userId],
       })
     } else {
-      //Add all users to a selected channel
+      //Add user to a selected channel
       const currentUsersInChannel = channelDoc.data()
       console.log(currentUsersInChannel.users)
       const index = currentUsersInChannel.users.indexOf(userId)

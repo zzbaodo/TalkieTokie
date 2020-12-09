@@ -8,16 +8,17 @@ import MailOutlineIcon from "@material-ui/icons/MailOutline"
 import UserContext from "../context/user/userContext"
 import Modal from "../components/Modal"
 import ChannelDisplay from "../components/ChannelDisplay"
+import ExitToAppIcon from "@material-ui/icons/ExitToApp"
+import firebase from "../firebase"
+import "firebase/firestore"
 
 const UserInfo = ({ channels, favorites }) => {
+  const auth = firebase.auth()
   const user = JSON.parse(localStorage.getItem("user"))
   const userContext = useContext(UserContext)
   const [showModal, setShowModal] = useState(false)
   const [config, setConfig] = useState(null)
-  const { getUserOption } = userContext
-  const changeChannel = (name) => {
-    getUserOption(name)
-  }
+  const { getUserOption, signUserOut } = userContext
   const closeModal = () => {
     setShowModal(false)
   }
@@ -29,34 +30,44 @@ const UserInfo = ({ channels, favorites }) => {
       type: "normal",
     })
   }
+  const signOut = () => {
+    auth.signOut()
+    localStorage.removeItem("user")
+    signUserOut()
+  }
 
   return (
     <div className="userInfo-container">
       {showModal && config && (
         <Modal userId={user.uid} closeModal={closeModal} config={config} />
       )}
-      <h3>TalkieTokie</h3>
-      <h5>Hello {user?.displayName}</h5>
-      <hr />
-      <div>
-        <h3>
-          <StarsIcon />
-          Favorite Channels:
+      <h1 style={{ margin: "3px", padding: "5px" }}>TalkieTokie</h1>
+      <div className="user-container">
+        <h3 style={{ margin: "3px", padding: "5px" }}>
+          Hello, {user?.displayName}
         </h3>
+        <IconButton onClick={signOut}>
+          <ExitToAppIcon />
+        </IconButton>
+      </div>
+      <hr />
+      <div className="favorite-header">
+        <StarsIcon />
+        <h3>Favorite Channels:</h3>
       </div>
       <ul>
         {favorites
           ? favorites.map((favorite) => (
-            <ChannelDisplay channel={favorite} type= 'fav' key={favorite} />
+              <ChannelDisplay channel={favorite} type="fav" key={favorite} />
             ))
           : null}
       </ul>
       <hr />
-      <div>
-        <h3>
+      <div className="channel-header">
+        <div className="icon-channel-wrapper">
           <LibraryAddIcon />
-          Channels
-        </h3>
+          <h3>Channels</h3>
+        </div>
         <IconButton onClick={addChannel}>
           <AddCircleOutlineIcon />
         </IconButton>
@@ -68,17 +79,6 @@ const UserInfo = ({ channels, favorites }) => {
               <ChannelDisplay channel={channel} key={channel} />
             ))
           : null}
-      </ul>
-      <hr />
-      <div>
-        <h3>
-          <MailOutlineIcon />
-          Direct Messages:
-        </h3>
-      </div>
-      <ul>
-        <li>John</li>
-        <li>Brad</li>
       </ul>
     </div>
   )
