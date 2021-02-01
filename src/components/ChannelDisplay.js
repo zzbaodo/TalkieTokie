@@ -19,7 +19,9 @@ const ChannelDisplay = ({ channel, type }) => {
   }
   return (
     <div className="channelDisplay">
-      <p onClick={() => changeChannel(channel)}>{channel}</p>
+      <p classname="channelText" onClick={() => changeChannel(channel)}>
+        {channel}
+      </p>
       <div className="channelDisplay__icon-container">
         {type === "fav" ? null : (
           <IconButton onClick={() => addFavChannel(channel, user.id)}>

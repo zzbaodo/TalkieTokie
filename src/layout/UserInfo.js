@@ -46,7 +46,11 @@ const UserInfo = ({ channels, favorites }) => {
         <h3 style={{ margin: "3px", padding: "5px" }}>
           Hello, {user?.displayName}
         </h3>
-        <IconButton onClick={signOut}>
+        <IconButton
+          style={{ color: "#65dfc9" }}
+          onClick={signOut}
+          className="icon"
+        >
           <ExitToAppIcon />
         </IconButton>
       </div>

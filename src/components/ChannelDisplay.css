@@ -1,3 +1,18 @@
-.channelDisplay  {
-    font-size: 20px;
+.channelDisplay {
+  font-size: 20px;
+  padding-left: 3px;
+  display: flex;
+}
+.channelDisplay > p {
+  white-space: nowrap;
+  flex: 0.8;
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.channelText {
+}
+.channelDisplay__icon-container {
+  display: flex;
+  flex: 0.2;
 }

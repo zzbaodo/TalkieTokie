@@ -1,7 +1,15 @@
 .userInfo-container {
-  flex: 1;
-  min-width: 180px;
+  flex: 0.3;
+  /* min-width: 180px; */
   max-width: 300px;
+  background: linear-gradient(
+    to right bottom,
+    rgba(255, 255, 255, 0.486),
+    rgba(255, 255, 255, 0.3)
+  );
+
+  border-top-left-radius: 2rem;
+  border-bottom-left-radius: 2rem;
 }
 .channelDisplay {
   display: flex;
@@ -26,11 +34,15 @@
   align-self: center;
   justify-content: space-between;
   margin-top: 15px;
-
 }
 
 .user-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+.icon {
+  color: linear-gradient(to right top, #65dfc9, #6cdbeb) !important;
+}
+ul {
 }

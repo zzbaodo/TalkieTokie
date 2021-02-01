@@ -14,14 +14,18 @@ function App() {
     <>
       <MessageState>
         <UserState>
-          <div className="app-container">
-            {user ? (
-              <UserInterface />
-            ) : (
-              <h3>
-                <Signin />
-              </h3>
-            )}
+          <div className="background">
+            <div className="app-container">
+              {user ? (
+                <UserInterface />
+              ) : (
+                <h3>
+                  <Signin />
+                </h3>
+              )}
+            </div>
+            <div className="circle1"></div>
+            <div className="circle2"></div>
           </div>
         </UserState>
       </MessageState>

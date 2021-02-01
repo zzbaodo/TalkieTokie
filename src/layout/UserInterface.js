@@ -21,7 +21,6 @@ const UserInterface = () => {
     <div className="UI-container">
       <UserInfo channels={userChannels} favorites={userFavChannels} />
       <ChatRoom />
-      
     </div>
   )
 }

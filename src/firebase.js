@@ -2,12 +2,12 @@ import firebase from "firebase"
 import "firebase/firestore"
 
 firebase.initializeApp({
-  apiKey: "AIzaSyAyrBADyL6DtXUngqzAR1dFf9khocbFLHw",
-  authDomain: "talkietokie.firebaseapp.com",
-  projectId: "talkietokie",
-  storageBucket: "talkietokie.appspot.com",
-  messagingSenderId: "811596237743",
-  appId: "1:811596237743:web:4eb1431783056c7658fd5a",
+  apiKey: "AIzaSyBBJRm-e3JYgJFYnu4wIu9XkbK-pIJUm7s",
+  authDomain: "tickietokie.firebaseapp.com",
+  projectId: "tickietokie",
+  storageBucket: "tickietokie.appspot.com",
+  messagingSenderId: "449480580724",
+  appId: "1:449480580724:web:96499479c96ceaf775fb21",
 })
 
 export default firebase

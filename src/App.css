@@ -1,4 +1,50 @@
-.app-container{
-  max-width: 1500px;
-  margin: 0 auto
+.app-container {
+  background: white;
+  min-height: 80vh;
+  max-width: 1220px;
+  min-width: 850px;
+  background: linear-gradient(
+    to right bottom,
+    rgba(255, 255, 255, 0.7),
+    rgba(255, 255, 255, 0.3)
+  );
+  border-radius: 2rem;
+  z-index: 2;
+  backdrop-filter: blur(2rem);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.background {
+  min-height: 100vh;
+  background: linear-gradient(to right top, #65dfc9, #6cdbeb);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.circle1,
+.circle2 {
+  background: white;
+  background: linear-gradient(
+    to right bottom,
+    rgba(255, 255, 255, 0.8),
+    rgba(255, 255, 255, 0.3)
+  );
+  height: 20rem;
+  width: 20rem;
+  position: absolute;
+  border-radius: 50%;
+}
+
+.circle1 {
+  top: 5%;
+  right: 15%;
+}
+.circle2 {
+  bottom: 5%;
+  left: 10%;
+}
+
+.MuiTouchRipple-root {
+  color: linear-gradient(to right top, #65dfc9, #6cdbeb);
 }

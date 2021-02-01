@@ -1,17 +1,17 @@
 .chat-panel-container {
-  width: 500px;
-  max-width: 600px;
-  min-width: 350px;
-  margin: 0 auto;
-  flex: 8;
+  width: 100%;
+  /* max-width: 600px;
+  min-width: 350px; */
+  /* margin: 0 auto; */
+  flex: 0.8;
   height: 600px;
   position: relative;
-  
 }
 
 .form-input {
   position: absolute;
   bottom: 0;
+  right: 20px;
 }
 .form-container {
   float: right;

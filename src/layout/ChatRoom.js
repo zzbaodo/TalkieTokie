@@ -7,7 +7,6 @@ import UserContext from "../context/user/userContext"
 import MessageContext from "../context/message/messageContext"
 
 const ChatRoom = () => {
-  
   const db = firebase.firestore()
   const userContext = useContext(UserContext)
   const userFromLocal = JSON.parse(localStorage.getItem("user"))
@@ -41,13 +40,12 @@ const ChatRoom = () => {
     setChatMessage("")
   }
 
- 
   return (
     <>
       <div className="chat-panel-container">
         {currentChannel ? (
           <>
-            <h1>Welcome to {currentChannel} Chat Room</h1>
+            <h1 style={{ textAlign: "center" }}>{currentChannel} Chat Room</h1>
             <div className="form-input">
               <div>
                 {messagesArr && loading === false ? (
@@ -64,7 +62,7 @@ const ChatRoom = () => {
                   <p>Still waiting</p>
                 )}
               </div>
-              <form className='form-container'>
+              <form className="form-container">
                 <input
                   type="text"
                   value={chatMessage}
@@ -72,7 +70,6 @@ const ChatRoom = () => {
                 />
                 <button onClick={submitHandler}>Send</button>
                 <br />
-  
               </form>
             </div>
           </>
