@@ -2,6 +2,7 @@
   font-size: 20px;
   padding-left: 3px;
   display: flex;
+  cursor: pointer;
 }
 .channelDisplay > p {
   white-space: nowrap;

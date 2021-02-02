@@ -44,7 +44,7 @@ export default (state, action) => {
       }
     case SIGN_USER_OUT:
       return {
-        currentChannel: "react",
+        currentChannel: "React",
         userChannels: [],
         userFavChannels: [],
         user: {

@@ -1,0 +1,14 @@
+.signin-container {
+  margin: auto auto;
+  width: 70%;
+  text-align: center;
+}
+
+.signin-container > img {
+  width: 300px;
+  height: auto;
+  border-radius: 50%;
+  display: flex;
+  margin: 0 auto;
+  padding-bottom: 30px;
+}

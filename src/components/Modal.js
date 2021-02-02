@@ -9,6 +9,10 @@ const Modal = ({ userId, closeModal, config }) => {
 
   const addChannelHandler = async () => {
     if (config.type === "normal") {
+      if (channel === "") {
+        alert("Please enter a valid name")
+        return
+      }
       userContext.addChannel(channel, userId)
     } else {
       userContext.addFavChannel(channel, userId)

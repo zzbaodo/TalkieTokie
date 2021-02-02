@@ -10,11 +10,22 @@
 
 .form-input {
   position: absolute;
-  bottom: 0;
-  right: 20px;
+  bottom: 5px;
+  right: 0;
+  height: 550px;
+  width: auto;
+  overflow: scroll;
+  display: flex;
+  flex-direction: column-reverse;
 }
+.form-input::-webkit-scrollbar {
+  display: none;
+}
+
 .form-container {
-  float: right;
+  position: absolute;
+  bottom: -30px;
+  right: 20px;
 }
 input:focus {
   outline: none;
@@ -46,4 +57,15 @@ input {
 
 .form-container > button:hover {
   background-color: #4095c6;
+}
+.form-container > input {
+  width: 300px;
+}
+.room-title {
+  font-size: 2rem;
+  margin-top: 10px;
+  opacity: 0.8;
+  background: -webkit-linear-gradient(#09009f, #6cdbeb);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }

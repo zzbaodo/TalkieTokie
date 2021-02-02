@@ -23,10 +23,13 @@
   justify-content: center;
 }
 h1 {
-  color: #658ec6;
+  /* color: #658ec6; */
   font-weight: 600;
   font-size: 3rem;
   opacity: 0.8;
+  background: -webkit-linear-gradient(#09009f, #6cdbeb);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 .circle1,
 .circle2 {

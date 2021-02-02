@@ -1,7 +1,7 @@
 import "./App.css"
 import firebase from "./firebase"
 import { useAuthState } from "react-firebase-hooks/auth"
-import Signin from "./SignIn"
+import Signin from "./layout/SignIn"
 import UserInterface from "./layout/UserInterface"
 import UserState from "./context/user/UserState"
 import MessageState from "./context/message/MessageState"
@@ -19,9 +19,9 @@ function App() {
               {user ? (
                 <UserInterface />
               ) : (
-                <h3>
+                <>
                   <Signin />
-                </h3>
+                </>
               )}
             </div>
             <div className="circle1"></div>

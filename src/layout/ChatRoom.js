@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react"
+import React, { useState, useContext, useEffect, useRef } from "react"
 import firebase from "../firebase"
 import "firebase/firestore"
 import ChatMessage from "../components/ChatMessage"
@@ -15,11 +15,15 @@ const ChatRoom = () => {
   const { messagesArr, loading, displayChatRoom } = messageContext
   const [chatMessage, setChatMessage] = useState("")
   // console.log(messagesArr.length)
-
+  const endOfMessage = useRef()
+  const scrollToBottom = () => {
+    endOfMessage.current.scrollIntoView({ behavior: "smooth" })
+  }
   useEffect(() => {
     if (currentChannel) {
       displayChatRoom(currentChannel)
     }
+    scrollToBottom()
     // eslint-disable-next-line
   }, [currentChannel])
 
@@ -45,9 +49,11 @@ const ChatRoom = () => {
       <div className="chat-panel-container">
         {currentChannel ? (
           <>
-            <h1 style={{ textAlign: "center" }}>{currentChannel} </h1>
+            <h2 style={{ textAlign: "center" }} className="room-title">
+              {currentChannel}{" "}
+            </h2>
             <div className="form-input">
-              <div>
+              <>
                 {messagesArr && loading === false ? (
                   messagesArr.map((msg) => (
                     <ChatMessage
@@ -61,17 +67,18 @@ const ChatRoom = () => {
                 ) : (
                   <p>Still waiting</p>
                 )}
-              </div>
-              <form className="form-container">
-                <input
-                  type="text"
-                  value={chatMessage}
-                  onChange={(e) => setChatMessage(e.target.value)}
-                />
-                <button onClick={submitHandler}>Send</button>
-                <br />
-              </form>
+              </>
             </div>
+            <form className="form-container">
+              <input
+                type="text"
+                value={chatMessage}
+                onChange={(e) => setChatMessage(e.target.value)}
+              />
+              <button onClick={submitHandler}>Send</button>
+              <br />
+            </form>
+            <div ref={endOfMessage} className='scroll'/>
           </>
         ) : (
           <h3>Please select a channel</h3>

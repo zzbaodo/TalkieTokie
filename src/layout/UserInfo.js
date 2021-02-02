@@ -43,9 +43,19 @@ const UserInfo = ({ channels, favorites }) => {
       <div className="userInfo-top">
         <h1 style={{ margin: "3px", padding: "5px" }}>TalkieTokie</h1>
         <div className="user-container">
-          <img src={user.photoURL} className="avatar" />
-          <h2 style={{ margin: "3px", padding: "5px" }}>{user?.displayName}</h2>
-          <div className='signout'>
+          <img src={user?.photoURL} className="avatar" />
+          <h2
+            style={{
+              margin: "3px",
+              padding: "5px",
+              color: "#658ec6",
+              fontWeight: "700",
+              opacity: "0.8",
+            }}
+          >
+            {user?.displayName}
+          </h2>
+          <div className="signout">
             <h4>Sign Out</h4>
             <IconButton
               style={{ color: "#151515" }}
@@ -79,14 +89,16 @@ const UserInfo = ({ channels, favorites }) => {
           <AddCircleOutlineIcon />
         </IconButton>
       </div>
-
-      <ul>
-        {channels
-          ? channels.map((channel) => (
-              <ChannelDisplay channel={channel} key={channel} />
-            ))
-          : null}
-      </ul>
+      <div className="channelList">
+        <ul>
+          <ChannelDisplay channel="React" key="React" />
+          {channels
+            ? channels.map((channel) => (
+                <ChannelDisplay channel={channel} key={channel} />
+              ))
+            : null}
+        </ul>
+      </div>
     </div>
   )
 }

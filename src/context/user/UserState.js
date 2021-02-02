@@ -14,7 +14,7 @@ import firebase from "../../firebase"
 import MessageContext from "../message/messageContext"
 const UserState = (props) => {
   const initState = {
-    currentChannel: "react",
+    currentChannel: "React",
     userChannels: [],
     userFavChannels: [],
     user: {
@@ -27,6 +27,7 @@ const UserState = (props) => {
   const db = firebase.firestore()
   const messageContext = useContext(MessageContext)
   const { uponChangeChannel } = messageContext
+
   ///ACTIONS
   const getUserInfo = async (userId, name) => {
     const userRef = db.collection("user").doc(userId)
@@ -34,7 +35,7 @@ const UserState = (props) => {
     if (!doc.exists) {
       //If the user is new then set up that user
       const info = {
-        channels: ["react"],
+        channels: ["React"],
         favorites: [],
         user: {
           name,
@@ -53,7 +54,7 @@ const UserState = (props) => {
         payload: doc.data(),
       })
     }
-    const channelsRef = db.collection("channels").doc("react")
+    const channelsRef = db.collection("channels").doc("React")
     const channelDoc = await channelsRef.get()
     if (!doc.exists) {
       await channelsRef.set({
@@ -150,7 +151,6 @@ const UserState = (props) => {
     }
 
     //Second remove the user from channel doc
-    console.log(channel)
     const channelRef = db.collection("channels").doc(channel)
     const channelDoc = await channelRef.get()
     const channelData = channelDoc.data()

@@ -18,15 +18,15 @@ const MessageState = (props) => {
       .collection(`channels`)
       .doc(currentChannel)
       .collection(`${currentChannel}messages`)
-      .orderBy("createdAt")
-      .limit("20")
+      .orderBy("createdAt", "desc")
+      .limit(20)
     const data = await query.get()
     let res = []
     data.forEach((doc) => {
-        const docData = {
-            ...doc.data(),
-            id: doc.id,
-        }
+      const docData = {
+        ...doc.data(),
+        id: doc.id,
+      }
       res.push(docData)
     })
     dispatch({
