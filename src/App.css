@@ -22,6 +22,12 @@
   align-items: center;
   justify-content: center;
 }
+h1 {
+  color: #658ec6;
+  font-weight: 600;
+  font-size: 3rem;
+  opacity: 0.8;
+}
 .circle1,
 .circle2 {
   background: white;
@@ -45,6 +51,18 @@
   left: 10%;
 }
 
-.MuiTouchRipple-root {
-  color: linear-gradient(to right top, #65dfc9, #6cdbeb);
+button {
+  display: inline-block;
+  padding: 0.3em 1.2em;
+  margin: 0 0.3em 0.3em 0;
+  border-radius: 2em;
+  font-weight: 300;
+  color: #ffffff;
+  background-color: #4eb5f1;
+  text-align: center;
+  transition: all 0.2s;
+  text-decoration: none;
+  box-sizing: border-box;
+  border: none;
+  outline: none;
 }

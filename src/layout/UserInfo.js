@@ -4,7 +4,6 @@ import StarsIcon from "@material-ui/icons/Stars"
 import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline"
 import { IconButton } from "@material-ui/core"
 import LibraryAddIcon from "@material-ui/icons/LibraryAdd"
-import MailOutlineIcon from "@material-ui/icons/MailOutline"
 import UserContext from "../context/user/userContext"
 import Modal from "../components/Modal"
 import ChannelDisplay from "../components/ChannelDisplay"
@@ -41,22 +40,26 @@ const UserInfo = ({ channels, favorites }) => {
       {showModal && config && (
         <Modal userId={user.uid} closeModal={closeModal} config={config} />
       )}
-      <h1 style={{ margin: "3px", padding: "5px" }}>TalkieTokie</h1>
-      <div className="user-container">
-        <h3 style={{ margin: "3px", padding: "5px" }}>
-          Hello, {user?.displayName}
-        </h3>
-        <IconButton
-          style={{ color: "#65dfc9" }}
-          onClick={signOut}
-          className="icon"
-        >
-          <ExitToAppIcon />
-        </IconButton>
+      <div className="userInfo-top">
+        <h1 style={{ margin: "3px", padding: "5px" }}>TalkieTokie</h1>
+        <div className="user-container">
+          <img src={user.photoURL} className="avatar" />
+          <h2 style={{ margin: "3px", padding: "5px" }}>{user?.displayName}</h2>
+          <div className='signout'>
+            <h4>Sign Out</h4>
+            <IconButton
+              style={{ color: "#151515" }}
+              onClick={signOut}
+              className="icon"
+            >
+              <ExitToAppIcon />
+            </IconButton>
+          </div>
+        </div>
+        <hr />
       </div>
-      <hr />
       <div className="favorite-header">
-        <StarsIcon />
+        <StarsIcon style={{ color: "#151515" }} />
         <h3>Favorite Channels:</h3>
       </div>
       <ul>
@@ -69,10 +72,10 @@ const UserInfo = ({ channels, favorites }) => {
       <hr />
       <div className="channel-header">
         <div className="icon-channel-wrapper">
-          <LibraryAddIcon />
+          <LibraryAddIcon style={{ color: "#151515" }} />
           <h3>Channels</h3>
         </div>
-        <IconButton onClick={addChannel}>
+        <IconButton style={{ color: "#151515" }} onClick={addChannel}>
           <AddCircleOutlineIcon />
         </IconButton>
       </div>

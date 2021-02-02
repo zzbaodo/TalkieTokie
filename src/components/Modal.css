@@ -1,21 +1,28 @@
 .modal {
-  width: 500px;
+  width: 350px;
   position: absolute;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  top: 300px;
+  box-shadow: 6px 6px 20px rgba(122, 122, 122, 0.212);
+  top: 20%;
   left: 30%;
-  height: 300px;
+  height: 200px;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
   z-index: 100;
   background-color: white;
+  border-radius: 2rem;
+  background: linear-gradient(
+    to right bottom,
+    rgba(255, 255, 255, 0.7),
+    rgba(255, 255, 255, 0.3)
+  );
 }
 
-.modal >input{
-    width: 150px;
-    height: 30px !important;
-    background-color: lightgrey;
-    padding: 0;
+.modal > input {
+  width: 150px;
+  height: 30px !important;
+  background-color: white;
+  padding: 0;
 }
+

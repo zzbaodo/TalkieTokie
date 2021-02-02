@@ -25,7 +25,7 @@ const ChannelDisplay = ({ channel, type }) => {
       <div className="channelDisplay__icon-container">
         {type === "fav" ? null : (
           <IconButton onClick={() => addFavChannel(channel, user.id)}>
-            <StarRateIcon />
+            <StarRateIcon style={{ color: "#fff58a" }} />
           </IconButton>
         )}
         <IconButton

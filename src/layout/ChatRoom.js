@@ -45,7 +45,7 @@ const ChatRoom = () => {
       <div className="chat-panel-container">
         {currentChannel ? (
           <>
-            <h1 style={{ textAlign: "center" }}>{currentChannel} Chat Room</h1>
+            <h1 style={{ textAlign: "center" }}>{currentChannel} </h1>
             <div className="form-input">
               <div>
                 {messagesArr && loading === false ? (

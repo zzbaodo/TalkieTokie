@@ -17,7 +17,7 @@ const Modal = ({ userId, closeModal, config }) => {
   }
   return (
     <div className="modal">
-      <h3>{config.name}</h3>
+      <h2>{config.name}</h2>
       <input
         type="text"
         value={channel}
