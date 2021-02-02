@@ -134,6 +134,9 @@ const UserState = (props) => {
   }
   const deleteChannel = async (channel, userId) => {
     // First remove the channel from user doc
+    if (channel === "React") {
+      return alert("You cannot delete the default channel")
+    }
     const userRef = db.collection("user").doc(userId)
     const userDoc = await userRef.get()
     const userData = userDoc.data()
@@ -146,7 +149,7 @@ const UserState = (props) => {
       type: DELETE_CHANNEL,
       payload: [...userData.channels],
     })
-    if(userData.favorites.indexOf(channel) !== -1){
+    if (userData.favorites.indexOf(channel) !== -1) {
       deleteFavChannel(channel, userId)
     }
 
@@ -154,7 +157,6 @@ const UserState = (props) => {
     const channelRef = db.collection("channels").doc(channel)
     const channelDoc = await channelRef.get()
     const channelData = channelDoc.data()
-    console.log('delete Channel')
     const indexChannel = channelData.users.indexOf(userId)
     channelData.users.splice(indexChannel, 1)
     await channelRef.update({
@@ -168,7 +170,6 @@ const UserState = (props) => {
     const userData = userDoc.data()
     const index = userData.favorites.indexOf(channel)
     userData.favorites.splice(index, 1)
-    console.log('delete fav channel')
     await userRef.update({
       favorites: [...userData.favorites],
     })
@@ -196,7 +197,7 @@ const UserState = (props) => {
         getUserInfo,
         deleteChannel,
         deleteFavChannel,
-        signUserOut
+        signUserOut,
       }}
     >
       {props.children}

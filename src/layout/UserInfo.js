@@ -91,7 +91,6 @@ const UserInfo = ({ channels, favorites }) => {
       </div>
       <div className="channelList">
         <ul>
-          <ChannelDisplay channel="React" key="React" />
           {channels
             ? channels.map((channel) => (
                 <ChannelDisplay channel={channel} key={channel} />
