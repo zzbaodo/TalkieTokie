@@ -10,7 +10,7 @@ const ChatRoom = () => {
   const db = firebase.firestore()
   const userContext = useContext(UserContext)
   const userFromLocal = JSON.parse(localStorage.getItem("user"))
-  const { currentChannel, signUserOut } = userContext
+  const { currentChannel } = userContext
   const messageContext = useContext(MessageContext)
   const { messagesArr, loading, displayChatRoom } = messageContext
   const [chatMessage, setChatMessage] = useState("")

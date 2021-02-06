@@ -3,7 +3,7 @@
   flex-direction: row;
   justify-content: flex-start;
   overflow: wrap;
-  width: 570px;
+  width: 650px;
 }
 .message-sent {
   display: block;

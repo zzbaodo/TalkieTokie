@@ -16,6 +16,7 @@ const UserInterface = () => {
       const { displayName, uid } = user
       getUserInfo(uid, displayName)
     }
+    //eslint-disable-next-line
   }, [])
   return (
     <div className="UI-container">

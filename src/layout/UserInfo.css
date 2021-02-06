@@ -1,7 +1,7 @@
 .userInfo-container {
   flex: 0.3;
   /* min-width: 180px; */
-  max-width: 300px;
+  width: 300px;
   background: linear-gradient(
     to right bottom,
     rgba(255, 255, 255, 0.7),
@@ -9,6 +9,10 @@
   );
   border-top-left-radius: 2rem;
   border-bottom-left-radius: 2rem;
+  overflow-y: scroll;
+}
+.userInfo-container::-webkit-scrollbar {
+  display: none !important;
 }
 .channelDisplay {
   display: flex;
@@ -67,12 +71,10 @@
 }
 
 .channelList {
-  height: 350px;
+  height: 300px;
   overflow: hidden;
 }
-/* .channelList::-webkit-scrollbar {
-  display: none !important;
-} */
+
 .channelList{
   overflow-y: scroll;
 }

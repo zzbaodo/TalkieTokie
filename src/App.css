@@ -1,8 +1,8 @@
 .app-container {
   background: white;
   min-height: 80vh;
-  max-width: 1220px;
-  min-width: 850px;
+  max-width: 1250px;
+  min-width: 900px;
   background: linear-gradient(
     to right bottom,
     rgba(255, 255, 255, 0.7),
@@ -25,7 +25,7 @@
 h1 {
   /* color: #658ec6; */
   font-weight: 600;
-  font-size: 3rem;
+  font-size: 2.5rem;
   opacity: 0.8;
   background: -webkit-linear-gradient(#09009f, #6cdbeb);
   -webkit-background-clip: text;

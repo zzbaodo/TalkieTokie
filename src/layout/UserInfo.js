@@ -17,7 +17,7 @@ const UserInfo = ({ channels, favorites }) => {
   const userContext = useContext(UserContext)
   const [showModal, setShowModal] = useState(false)
   const [config, setConfig] = useState(null)
-  const { getUserOption, signUserOut } = userContext
+  const { signUserOut } = userContext
   const closeModal = () => {
     setShowModal(false)
   }
@@ -43,7 +43,7 @@ const UserInfo = ({ channels, favorites }) => {
       <div className="userInfo-top">
         <h1 style={{ margin: "3px", padding: "5px" }}>TalkieTokie</h1>
         <div className="user-container">
-          <img src={user?.photoURL} className="avatar" />
+          <img src={user?.photoURL} className="avatar" alt="avatar" />
           <h2
             style={{
               margin: "3px",
